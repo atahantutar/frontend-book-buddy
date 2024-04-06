@@ -2,16 +2,23 @@ import React from "react";
 
 const Books = (props) => {
   return (
-    <div className="container my-4">
+    <div className="container my-4 ">
       <div className="row">
         {props.books.map((book, i) => (
-          <div className="col-lg-4" key={i}>
-            <div className="card mb-4 shadow-sm">
-              <img
-                src={book.imageurl}
-                className="card-img-top"
-                alt={book.title}
-              />
+          <div className="col-lg-4 p-4 " key={i}>
+            <div className="card mb-4 shadow-sm h-100">
+              <div className="text-center">
+                <img
+                  src={book.imageurl}
+                  alt={book.title}
+                  style={{
+                    width: "200px",
+                    height: "300px",
+                    objectFit: "cover",
+                  }}
+                  className="img-fluid"
+                />
+              </div>
               <div className="card-body">
                 <h5 className="card-title">{book.title}</h5>
                 <p className="card-text">{book.description}</p>
