@@ -32,50 +32,54 @@ const RegisterForm = () => {
   };
 
   return (
-    <section class="p-3 p-md-4 p-xl-5">
-      <div class="container">
-        <div class="card border-light-subtle shadow-sm">
-          <div class="row g-0">
-            <div class="col-12 col-md-6 text-bg-primary">
-              <div class="d-flex align-items-center justify-content-center h-100">
-                <div class="col-10 col-xl-8 py-3">
-                  <img
-                    class="img-fluid rounded mb-4"
-                    loading="lazy"
-                    src="./assets/img/bsb-logo-light.svg"
-                    width="245"
-                    height="80"
-                    alt="BootstrapBrain Logo"
-                  />
-                  <hr class="border-primary-subtle mb-4" />
-                  <h2 class="h1 mb-4">
-                    We make digital products that drive you to stand out.
+    <section className="p-2 p-md-3 p-xl-4">
+      <div className="container">
+        <div className="card border-light-subtle shadow-sm">
+          <div className="row g-0">
+            <div className="col-12 col-md-6 text-bg-dark">
+              <div className="d-flex align-items-center justify-content-center h-100">
+                <div className="col-10 col-xl-8 py-3">
+                  <div className="align-items-center justify-content-center d-flex">
+                    <img
+                      className="img-fluid rounded mb-4"
+                      loading="lazy"
+                      src="https://media.istockphoto.com/id/1178677764/vector/paper-cut-art-of-open-book-with-learning-education-and-explore-concept.jpg?s=612x612&w=0&k=20&c=BMX01C-gIgp1fnulRUnFzixxmJPplsVmNbP2ChhDORo="
+                      width="%100"
+                      height="%100"
+                      alt=" Logo"
+                    />
+                  </div>
+                  <hr className="border-dark-subtle mb-3" />
+                  <h2 className="h3 mb-3">
+                    BookBuddy: Your Ultimate Reading Companion.
                   </h2>
-                  <p class="lead m-0">
-                    We write words, take photos, make videos, and interact with
-                    artificial intelligence.
+                  <p className="lead m-0">
+                    BookBuddy is your ultimate reading companion. Discover new
+                    books, track your progress, connect with other book lovers,
+                    and get personalized recommendations. Join us today and
+                    elevate your reading experience
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-6">
-              <div class="card-body p-3 p-md-4 p-xl-5">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="mb-5">
+            <div className="col-12 col-md-6">
+              <div className="card-body p-2 p-md-3 p-xl-4">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="mb-3">
                       <h3>Register</h3>
                     </div>
                   </div>
                 </div>
                 <form action="#!">
-                  <div class="row gy-3 gy-md-4 overflow-hidden">
-                    <div class="col-12">
-                      <label for="name" class="form-label">
-                        Name <span class="text-danger">*</span>
+                  <div className="row gx-2 gy-2 overflow-hidden">
+                    <div className="col-md-6">
+                      <label htmlFor="name" className="form-label">
+                        Name <span className="text-danger">*</span>
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name="name"
                         id="name"
                         required
@@ -84,13 +88,13 @@ const RegisterForm = () => {
                       />
                     </div>
 
-                    <div class="col-12">
-                      <label for="name" class="form-label">
-                        Surname <span class="text-danger">*</span>
+                    <div className="col-md-6">
+                      <label htmlFor="surname" className="form-label">
+                        Surname <span className="text-danger">*</span>
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name="surname"
                         id="surname"
                         required
@@ -99,13 +103,13 @@ const RegisterForm = () => {
                       />
                     </div>
 
-                    <div class="col-12">
-                      <label for="email" class="form-label">
-                        Email <span class="text-danger">*</span>
+                    <div className="col-12">
+                      <label htmlFor="email" className="form-label">
+                        Email <span className="text-danger">*</span>
                       </label>
                       <input
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         name="email"
                         id="email"
                         placeholder="name@example.com"
@@ -114,13 +118,13 @@ const RegisterForm = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    <div class="col-12">
-                      <label for="password" class="form-label">
-                        Password <span class="text-danger">*</span>
+                    <div className="col-12">
+                      <label htmlFor="password" className="form-label">
+                        Password <span className="text-danger">*</span>
                       </label>
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         name="password"
                         id="password"
                         required
@@ -129,26 +133,26 @@ const RegisterForm = () => {
                       />
                     </div>
 
-                    <div class="col-12">
-                      <label for="password" class="form-label">
-                        Retype Password <span class="text-danger">*</span>
+                    <div className="col-12">
+                      <label htmlFor="retypePassword" className="form-label">
+                        Retype Password <span className="text-danger">*</span>
                       </label>
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         name="retypePassword"
                         id="retypePassword"
                         required
                       />
                     </div>
 
-                    <div class="col-12">
-                      <label for="name" class="form-label">
-                        Address <span class="text-danger">*</span>
+                    <div className="col-12">
+                      <label htmlFor="address" className="form-label">
+                        Address <span className="text-danger">*</span>
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name="address"
                         id="address"
                         required
@@ -157,27 +161,27 @@ const RegisterForm = () => {
                       />
                     </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
+                    <div className="col-12">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value=""
                           name="remember_me"
                           id="remember_me"
                         />
                         <label
-                          class="form-check-label text-secondary"
-                          for="remember_me"
+                          className="form-check-label text-secondary"
+                          htmlFor="remember_me"
                         >
                           Keep me logged in
                         </label>
                       </div>
                     </div>
-                    <div class="col-12">
-                      <div class="d-grid">
+                    <div className="col-12">
+                      <div className="d-grid">
                         <button
-                          class="btn bsb-btn-xl btn-primary"
+                          className="btn bsb-btn-xl btn-dark"
                           type="submit"
                           onClick={handleSubmit}
                         >
@@ -187,12 +191,15 @@ const RegisterForm = () => {
                     </div>
                   </div>
                 </form>
-                <div class="row">
-                  <div class="col-12">
-                    <hr class="mt-5 mb-4 border-secondary-subtle" />
-                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                      <Link className="link-secondary text-decoration-none">
-                        Create new account
+                <div className="row">
+                  <div className="col-12">
+                    <hr className="mt-4 mb-3 border-secondary-subtle" />
+                    <div className="d-flex gap-2 flex-column flex-md-row justify-content-md-end">
+                      <Link
+                        to="/login"
+                        className="link-secondary text-decoration-none"
+                      >
+                        Already have an account? Login
                       </Link>
                     </div>
                   </div>
