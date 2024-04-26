@@ -32,24 +32,28 @@ const LoginForm = () => {
       <div class="container">
         <div class="card border-light-subtle shadow-sm">
           <div class="row g-0">
-            <div class="col-12 col-md-6 text-bg-primary">
+            <div class="col-12 col-md-6 text-bg-dark">
               <div class="d-flex align-items-center justify-content-center h-100">
-                <div class="col-10 col-xl-8 py-3">
-                  <img
-                    class="img-fluid rounded mb-4"
-                    loading="lazy"
-                    src="./assets/img/bsb-logo-light.svg"
-                    width="245"
-                    height="80"
-                    alt="BootstrapBrain Logo"
-                  />
-                  <hr class="border-primary-subtle mb-4" />
-                  <h2 class="h1 mb-4">
-                    We make digital products that drive you to stand out.
+                <div className="col-10 col-xl-8 py-3">
+                  <div className="align-items-center justify-content-center d-flex">
+                    <img
+                      className="img-fluid rounded mb-4"
+                      loading="lazy"
+                      src="https://media.istockphoto.com/id/1178677764/vector/paper-cut-art-of-open-book-with-learning-education-and-explore-concept.jpg?s=612x612&w=0&k=20&c=BMX01C-gIgp1fnulRUnFzixxmJPplsVmNbP2ChhDORo="
+                      width="%100"
+                      height="%100"
+                      alt=" Logo"
+                    />
+                  </div>
+                  <hr className="border-dark-subtle mb-3" />
+                  <h2 className="h3 mb-3">
+                    BookBuddy: Your Ultimate Reading Companion.
                   </h2>
-                  <p class="lead m-0">
-                    We write words, take photos, make videos, and interact with
-                    artificial intelligence.
+                  <p className="lead m-0">
+                    BookBuddy is your ultimate reading companion. Discover new
+                    books, track your progress, connect with other book lovers,
+                    and get personalized recommendations. Join us today and
+                    elevate your reading experience
                   </p>
                 </div>
               </div>
@@ -115,10 +119,12 @@ const LoginForm = () => {
                     <div class="col-12">
                       <div class="d-grid">
                         <button
-                          class="btn bsb-btn-xl btn-primary"
+                          class="btn bsb-btn-xl btn-dark"
                           type="submit"
                           onClick={handleSubmit}
-                        ></button>
+                        >
+                          Login
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -127,7 +133,10 @@ const LoginForm = () => {
                   <div class="col-12">
                     <hr class="mt-5 mb-4 border-secondary-subtle" />
                     <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                      <Link className="link-secondary text-decoration-none">
+                      <Link
+                        className="link-secondary text-decoration-none"
+                        to={"/register"}
+                      >
                         Create new account
                       </Link>
                     </div>
