@@ -5,8 +5,8 @@ const HTTP = axios.create({
 });
 
 export const Login = async (FormData) => {
-  await HTTP.post("/login", FormData);
+  return await HTTP.post("/login", FormData);
 };
 export const Register = async (FormData) => {
-  await HTTP.post("/register", FormData);
+  return await HTTP.post("/register", FormData);
 };
