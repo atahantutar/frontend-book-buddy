@@ -20,7 +20,9 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      Login(formData);
+      const response = await Login(formData);
+
+      localStorage.setItem("accessToken", response?.data?.accessToken);
       navigate("/");
     } catch (error) {
       //toast message
@@ -28,12 +30,12 @@ const LoginForm = () => {
     }
   };
   return (
-    <section class="p-3 p-md-4 p-xl-5">
-      <div class="container">
-        <div class="card border-light-subtle shadow-sm">
-          <div class="row g-0">
-            <div class="col-12 col-md-6 text-bg-dark">
-              <div class="d-flex align-items-center justify-content-center h-100">
+    <section className="p-3 p-md-4 p-xl-5">
+      <div className="container">
+        <div className="card border-light-subtle shadow-sm">
+          <div className="row g-0">
+            <div className="col-12 col-md-6 text-bg-dark">
+              <div className="d-flex align-items-center justify-content-center h-100">
                 <div className="col-10 col-xl-8 py-3">
                   <div className="align-items-center justify-content-center d-flex">
                     <img
@@ -58,24 +60,24 @@ const LoginForm = () => {
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-6">
-              <div class="card-body p-3 p-md-4 p-xl-5">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="mb-5">
+            <div className="col-12 col-md-6">
+              <div className="card-body p-3 p-md-4 p-xl-5">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="mb-5">
                       <h3>Register</h3>
                     </div>
                   </div>
                 </div>
                 <form action="#!">
-                  <div class="row gy-3 gy-md-4 overflow-hidden">
-                    <div class="col-12">
-                      <label for="email" class="form-label">
-                        Email <span class="text-danger">*</span>
+                  <div className="row gy-3 gy-md-4 overflow-hidden">
+                    <div className="col-12">
+                      <label for="email" className="form-label">
+                        Email <span className="text-danger">*</span>
                       </label>
                       <input
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         name="email"
                         id="email"
                         placeholder="name@example.com"
@@ -84,13 +86,13 @@ const LoginForm = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    <div class="col-12">
-                      <label for="password" class="form-label">
-                        Password <span class="text-danger">*</span>
+                    <div className="col-12">
+                      <label for="password" className="form-label">
+                        Password <span className="text-danger">*</span>
                       </label>
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         name="password"
                         id="password"
                         required
@@ -99,27 +101,27 @@ const LoginForm = () => {
                       />
                     </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
+                    <div className="col-12">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value=""
                           name="remember_me"
                           id="remember_me"
                         />
                         <label
-                          class="form-check-label text-secondary"
+                          className="form-check-label text-secondary"
                           for="remember_me"
                         >
                           Keep me logged in
                         </label>
                       </div>
                     </div>
-                    <div class="col-12">
-                      <div class="d-grid">
+                    <div className="col-12">
+                      <div className="d-grid">
                         <button
-                          class="btn bsb-btn-xl btn-dark"
+                          className="btn bsb-btn-xl btn-dark"
                           type="submit"
                           onClick={handleSubmit}
                         >
@@ -129,10 +131,10 @@ const LoginForm = () => {
                     </div>
                   </div>
                 </form>
-                <div class="row">
-                  <div class="col-12">
-                    <hr class="mt-5 mb-4 border-secondary-subtle" />
-                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
+                <div className="row">
+                  <div className="col-12">
+                    <hr className="mt-5 mb-4 border-secondary-subtle" />
+                    <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
                       <Link
                         className="link-secondary text-decoration-none"
                         to={"/register"}
