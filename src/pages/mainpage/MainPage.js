@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Books from "../../components/books/books.js";
-import axios from "axios";
 import Navbar from "../../components/navbar/Navbar.js";
+import { getDecodeToken } from "../../utils/helpers.js";
+import { getBooks, userInfo } from "../../axios/index.js";
 
 const Home = () => {
   const [state, setState] = useState({ books: [] });
   const [searchText, setSearchText] = useState({ text: "" });
 
-  const data = async () => {
-    const response = await axios.get("http://localhost:5500/getbooks");
+  const userId = getDecodeToken();
 
+  const user = async () => {
+    const response = await userInfo(userId.id);
+
+    const data = response.data.user;
+    console.log(data);
+  };
+
+  const data = async () => {
+    const response = await getBooks();
     const data = response.data.Books;
     setState({
       books: data,
@@ -31,6 +40,7 @@ const Home = () => {
 
   useEffect(() => {
     data();
+    user();
   }, []);
 
   return (

@@ -21,8 +21,7 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       const response = await Login(formData);
-
-      localStorage.setItem("accessToken", response?.data?.accessToken);
+      localStorage.setItem("accessToken", response?.data?.token);
       navigate("/");
     } catch (error) {
       //toast message
