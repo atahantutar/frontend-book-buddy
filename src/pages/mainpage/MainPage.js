@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Books from "../../components/books/books.js";
 import Navbar from "../../components/navbar/Navbar.js";
-import { getDecodeToken } from "../../utils/helpers.js";
-import { getBooks, userInfo } from "../../axios/index.js";
-
+import { getBooks, swapQuery } from "../../axios/index.js";
 const Home = () => {
   const [state, setState] = useState({ books: [] });
   const [searchText, setSearchText] = useState({ text: "" });
-
-  const userId = getDecodeToken();
-
-  const user = async () => {
-    const response = await userInfo(userId.id);
-
-    const data = response.data.user;
-    console.log(data);
-  };
 
   const data = async () => {
     const response = await getBooks();
@@ -38,15 +27,18 @@ const Home = () => {
       return a.id - b.id;
     });
 
+  const swapRequest = async (id) => {
+    await swapQuery({ bookId: id });
+  };
+
   useEffect(() => {
     data();
-    user();
   }, []);
 
   return (
     <div>
       <Navbar searchTextProp={searchBook} />
-      <Books books={filteredBook} />
+      <Books books={filteredBook} swapRequestProps={swapRequest} />
     </div>
   );
 };
