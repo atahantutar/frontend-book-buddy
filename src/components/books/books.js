@@ -1,6 +1,6 @@
 import React from "react";
 
-const Books = (props) => {
+const Books = (props, swapRequestProps) => {
   return (
     <div className="container my-4 ">
       <div className="row">
@@ -38,6 +38,7 @@ const Books = (props) => {
                   <button
                     type="button"
                     className="btn btn-md btn-outline-success mx-2"
+                    onClick={() => props.swapRequestProps(book.id)}
                   >
                     Swap
                   </button>
