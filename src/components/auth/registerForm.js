@@ -27,7 +27,6 @@ const RegisterForm = () => {
       navigate("/login");
     } catch (error) {
       //toast message
-      console.error(error);
     }
   };
 
