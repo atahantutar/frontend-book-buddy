@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Books from "../../components/books/books.js";
-import Navbar from "../../components/navbar/Navbar.js";
+import Header from "../../components/header/header.js";
 import { getBooks, swapQuery } from "../../axios/index.js";
+
 const Home = () => {
   const [state, setState] = useState({ books: [] });
   const [searchText, setSearchText] = useState({ text: "" });
@@ -37,7 +38,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar searchTextProp={searchBook} />
+      <Header searchTextProp={searchBook} />
       <Books books={filteredBook} swapRequestProps={swapRequest} />
     </div>
   );
