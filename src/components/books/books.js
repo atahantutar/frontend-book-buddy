@@ -1,6 +1,8 @@
 import React from "react";
+import { useAuth } from "../../context/authContext";
 
 const Books = (props, swapRequestProps) => {
+  const { user } = useAuth();
   return (
     <div className="container my-4 ">
       <div className="row">
@@ -35,13 +37,15 @@ const Books = (props, swapRequestProps) => {
                   <strong>Publication Year:</strong> {book.publicationyear}
                 </p>
                 <div className="d-flex justify-content-start  align-items-center">
-                  <button
-                    type="button"
-                    className="btn btn-md btn-outline-success mx-2"
-                    onClick={() => props.swapRequestProps(book.id)}
-                  >
-                    Swap
-                  </button>
+                  {user ? (
+                    <button
+                      type="button"
+                      className="btn btn-md btn-outline-success mx-2"
+                      onClick={() => props.swapRequestProps(book.id)}
+                    >
+                      Swap
+                    </button>
+                  ) : null}
                   <button
                     type="button"
                     className="btn btn-md btn-outline-success mx-2"
