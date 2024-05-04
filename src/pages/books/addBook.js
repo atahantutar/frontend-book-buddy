@@ -1,12 +1,14 @@
-import axios from "axios";
 import React from "react";
+import AddBook from "../../components/books/addBook";
+import Header from "../../components/header/header";
 
-const AddBook = () => {
+const AddBookPage = () => {
   return (
     <div>
-      <h1></h1>
+      <Header />
+      <AddBook />
     </div>
   );
 };
 
-export default AddBook;
+export default AddBookPage;
