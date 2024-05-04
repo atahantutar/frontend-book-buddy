@@ -11,7 +11,7 @@ const Books = (props, swapRequestProps) => {
             <div className="card mb-4 shadow-sm h-100">
               <div className="text-center">
                 <img
-                  src={book.imageurl}
+                  src={book.imageUrl}
                   alt={book.title}
                   style={{
                     width: "200px",
@@ -25,16 +25,21 @@ const Books = (props, swapRequestProps) => {
                 <h5 className="card-title">{book.title}</h5>
                 <p className="card-text">{book.description}</p>
                 <p className="card-text">
-                  <strong>Author:</strong> {book.author}
+                  <strong>Author:</strong> {book.author.name}
                 </p>
                 <p className="card-text">
-                  <strong>Genre:</strong> {book.genre}
+                  <strong>Category:</strong> {book.category.name}
                 </p>
+
                 <p className="card-text">
                   <strong>Publisher:</strong> {book.publisher}
                 </p>
                 <p className="card-text">
-                  <strong>Publication Year:</strong> {book.publicationyear}
+                  <strong>Publication Year:</strong>
+                  {new Date(book.published).toLocaleDateString()}
+                </p>
+                <p className="card-text">
+                  <strong>User:</strong> {book.user.name}
                 </p>
                 <div className="d-flex justify-content-start  align-items-center">
                   {user ? (
@@ -53,7 +58,7 @@ const Books = (props, swapRequestProps) => {
                     Detail
                   </button>
                   <h2>
-                    <span className="badge bg-info">{book.condition}</span>
+                    <span className="badge bg-info">{book.language}</span>
                   </h2>
                 </div>
               </div>
