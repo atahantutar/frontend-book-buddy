@@ -3,8 +3,8 @@ import Home from "./pages/mainpage/MainPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
-import AddBook from "./pages/books/addBook";
 import AuthProvider from "./context/authContext";
+import AddBookPage from "./pages/books/addBook";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/add" element={<AddBook />} />
+          <Route path="/addBook" element={<AddBookPage />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
