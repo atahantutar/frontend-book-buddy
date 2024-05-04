@@ -55,7 +55,32 @@ const AddBook = () => {
     event.preventDefault();
     try {
       const response = await addBook(formData);
-    } catch (error) {}
+      if (response.status === 200) {
+        setFormData({
+          title: "",
+          content: "",
+          publisher: "",
+          published: "",
+          isbn: "",
+          categoryId: "",
+          language: "",
+          pages: "",
+          authorId: "",
+          imageUrl: "",
+        });
+
+        setCategoryName({
+          name: "",
+        });
+        setAuthorName({
+          name: "",
+        });
+      }
+
+      //Toaster Message
+    } catch (error) {
+      //Toaster Message
+    }
   };
 
   useEffect(() => {
