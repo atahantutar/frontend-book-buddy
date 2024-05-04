@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PiLineVerticalLight } from "react-icons/pi";
 import { useAuth } from "../../context/authContext";
 
 const Header = (props) => {
@@ -28,22 +29,22 @@ const Header = (props) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to={`/`}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link active" to={`/`}></Link>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link active" to={`/`} tabIndex="-1">
-                Profile
-              </Link>
-            </li>
             {user ? (
               <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    to={`/addBook`}
+                    tabIndex="-1"
+                  >
+                    Add Book
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to={`/`} tabIndex="-1">
+                    Profile
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link
                     className="nav-link active"
@@ -56,15 +57,6 @@ const Header = (props) => {
                     Logout
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    to={`/addBook`}
-                    tabIndex="-1"
-                  >
-                    Add Book
-                  </Link>
-                </li>
               </>
             ) : (
               <>
@@ -73,6 +65,11 @@ const Header = (props) => {
                     Login
                   </Link>
                 </li>
+
+                <li className="text-white align-items-center justify-content-center d-flex ">
+                  <PiLineVerticalLight />
+                </li>
+
                 <li className="nav-item">
                   <Link
                     className="nav-link active"
