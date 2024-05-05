@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../../context/authContext";
 
 const Books = (props, swapRequestProps) => {
-  const { user } = useAuth();
+  const { userData } = useAuth();
   return (
     <div className="container my-4 ">
       <div className="row">
@@ -42,7 +42,7 @@ const Books = (props, swapRequestProps) => {
                   <strong>User:</strong> {book.user.name}
                 </p>
                 <div className="d-flex justify-content-start  align-items-center">
-                  {user ? (
+                  {userData.name ? (
                     <button
                       type="button"
                       className="btn btn-md btn-outline-success mx-2"
