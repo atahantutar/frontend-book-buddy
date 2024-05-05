@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Books from "../../components/books/books.js";
 import Header from "../../components/header/header.js";
 import { getBooks, swapQuery } from "../../axios/index.js";
+import toast, { Toaster } from "react-hot-toast";
 
 const Home = () => {
   const [state, setState] = useState({ books: [] });
@@ -29,7 +30,13 @@ const Home = () => {
     });
 
   const swapRequest = async (id) => {
-    await swapQuery({ bookId: id });
+    try {
+      const bookId = { id: id };
+      const response = await swapQuery(bookId);
+      toast.success(response?.data?.message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
   useEffect(() => {
@@ -39,6 +46,7 @@ const Home = () => {
   return (
     <div>
       <Header searchTextProp={searchBook} />
+      <Toaster />
       <Books books={filteredBook} swapRequestProps={swapRequest} />
     </div>
   );
