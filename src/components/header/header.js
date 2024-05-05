@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PiLineVerticalLight } from "react-icons/pi";
 import { useAuth } from "../../context/authContext";
+import { removeCookie } from "../../utils/helpers";
 
 const Header = (props) => {
-  const { user, setUser } = useAuth();
+  const { userData, setUserData } = useAuth();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +30,7 @@ const Header = (props) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-            {user ? (
+            {userData.name ? (
               <>
                 <li className="nav-item">
                   <Link
@@ -51,7 +52,8 @@ const Header = (props) => {
                     to={`/`}
                     tabIndex="-1"
                     onClick={() => {
-                      setUser(false);
+                      setUserData({ user: [""] });
+                      removeCookie("AccessToken");
                     }}
                   >
                     Logout
