@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Login } from "../../axios";
 import { useAuth } from "../../context/authContext";
+import Cookies from "universal-cookie";
 
 const LoginForm = () => {
+  const cookies = new Cookies();
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUserData } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,13 +24,19 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const response = await Login(formData);
-      setUser(response?.data?.user ? true : false);
-      navigate("/");
+      cookies.set("AccessToken", response?.data?.token);
+      toast.success("Login Successful", {
+        duration: 100,
+      });
+      setUserData(response?.data?.user);
+      setTimeout(() => {
+        navigate("/");
+      }, 100);
     } catch (error) {
-      //toast message
-      setUser(false);
+      toast.error(error.response.data.message);
     }
   };
   return (
