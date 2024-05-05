@@ -37,7 +37,7 @@ const AddBook = () => {
   const createAuthor = async (event) => {
     event.preventDefault();
     const response = await addAuthor(authorName);
-    setAuthorName({ name: response?.data?.newAuthor?.name });
+    setAuthorName({ name: response?.data?.newAuthor?.name }); //Check this
     await data();
     setAuthorName({ name: "" });
     setIsAuthor(false);
@@ -45,7 +45,7 @@ const AddBook = () => {
   const createCategory = async (event) => {
     event.preventDefault();
     const response = await addCategory(categoryName);
-    setCategoryName({ name: response?.data?.newCategory?.name });
+    setCategoryName({ name: response?.data?.newCategory?.name }); //Check this
     await data();
     setCategoryName({ name: "" });
     setIsCategory(false);
@@ -75,6 +75,9 @@ const AddBook = () => {
         setAuthorName({
           name: "",
         });
+
+        event.target.cateId = "";
+        event.target.authrId = "";
       }
 
       //Toaster Message
@@ -227,7 +230,7 @@ const AddBook = () => {
                 className="form-control"
                 onChange={handleChange}
               >
-                <option value="" defaultValue={""} />
+                <option name="authrId" value="" defaultValue={""} />
                 {authors?.author?.map((author) => (
                   <option key={author.id} value={author.id}>
                     {author.name}
@@ -289,7 +292,7 @@ const AddBook = () => {
               >
                 <option value="" defaultValue={""} />
                 {categories?.category?.map((cate) => (
-                  <option key={cate.id} value={cate.id}>
+                  <option name="cateId" key={cate.id} value={cate.id}>
                     {cate.name}
                   </option>
                 ))}
