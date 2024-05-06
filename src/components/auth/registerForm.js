@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Register } from "../../axios";
-import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -24,21 +24,29 @@ const RegisterForm = () => {
     event.preventDefault();
 
     try {
-      await Register(formData);
-      toast.success("Registration Successful", {
-        duration: 100,
-      });
-      setTimeout(() => {
+      const response = await Register(formData);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: response?.data?.message,
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
         navigate("/login");
-      }, 100);
+      });
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.response?.data?.message || "Something went wrong",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
   return (
     <div className="container p-xl-3">
-      <Toaster />
       <div className="card border-light-subtle shadow-sm">
         <div className="row g-0">
           <div className="col-12 col-md-6 text-bg-dark">
