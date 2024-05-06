@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import { Login } from "../../axios";
 import { useAuth } from "../../context/authContext";
 import Cookies from "universal-cookie";
@@ -28,15 +28,24 @@ const LoginForm = () => {
     try {
       const response = await Login(formData);
       cookies.set("AccessToken", response?.data?.token);
-      toast.success("Login Successful", {
-        duration: 100,
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login Successful",
+        showConfirmButton: false,
+        timer: 1000,
+      }).then(() => {
+        navigate("/");
       });
       setUserData(response?.data?.user);
-      setTimeout(() => {
-        navigate("/");
-      }, 100);
     } catch (error) {
-      toast.error(error.response.data.message);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.response?.data?.message || "Something went wrong",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
   return (
