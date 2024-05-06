@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PiLineVerticalLight } from "react-icons/pi";
 import { useAuth } from "../../context/authContext";
-import { removeCookie } from "../../utils/helpers";
+import Cookies from "universal-cookie";
 
 const Header = (props) => {
   const { userData, setUserData } = useAuth();
+  const cookies = new Cookies();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -29,6 +30,7 @@ const Header = (props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarScroll">
+          <li className="text-white">{userData.name}</li>
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             {userData.name ? (
               <>
@@ -49,11 +51,11 @@ const Header = (props) => {
                 <li className="nav-item">
                   <Link
                     className="nav-link active"
-                    to={`/`}
                     tabIndex="-1"
+                    to={`/login`}
                     onClick={() => {
                       setUserData({ user: [""] });
-                      removeCookie("AccessToken");
+                      cookies.remove("AccessToken");
                     }}
                   >
                     Logout
