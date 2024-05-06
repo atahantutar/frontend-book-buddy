@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getAuthors,
   addAuthor,
@@ -6,8 +7,11 @@ import {
   addCategory,
   addBook,
 } from "../../axios";
+import Swal from "sweetalert2";
 
 const AddBook = () => {
+  const navigate = useNavigate();
+  const [button, setButton] = useState(false);
   const [authors, setAuthors] = useState({ author: [] });
   const [isAuthor, setIsAuthor] = useState(false);
   const [authorName, setAuthorName] = useState({ name: "" });
@@ -27,6 +31,14 @@ const AddBook = () => {
     imageUrl: "",
   });
 
+  useEffect(() => {
+    data();
+  }, []);
+
+  useEffect(() => {
+    checkInput();
+  }, [formData, authorName, categoryName]);
+
   const data = async () => {
     const responseAuthor = await getAuthors();
     const responseCategory = await getCategories();
@@ -36,26 +48,69 @@ const AddBook = () => {
 
   const createAuthor = async (event) => {
     event.preventDefault();
-    const response = await addAuthor(authorName);
-    setAuthorName({ name: response?.data?.newAuthor?.name }); //Check this
-    await data();
-    setAuthorName({ name: "" });
-    setIsAuthor(false);
+    if (authorName.name === "") {
+      Swal.fire({
+        position: "top-end",
+        icon: "Warning",
+        title: "Author Name is required",
+        showConfirmButton: false,
+        timer: 1000,
+      }); //message
+    } else {
+      const response = await addAuthor(authorName);
+      setAuthorName({ name: response?.data?.newAuthor?.name }); //Check this
+      await data();
+      setAuthorName({ name: "" });
+      setIsAuthor(false);
+    }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Author Added Successfully",
+      showConfirmButton: false,
+      timer: 1000,
+    });
   };
   const createCategory = async (event) => {
     event.preventDefault();
-    const response = await addCategory(categoryName);
-    setCategoryName({ name: response?.data?.newCategory?.name }); //Check this
-    await data();
-    setCategoryName({ name: "" });
-    setIsCategory(false);
+    if (categoryName.name === "") {
+      Swal.fire({
+        position: "top-end",
+        icon: "Warning",
+        title: "Category Name is required",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    } else {
+      const response = await addCategory(categoryName);
+      setCategoryName({ name: response?.data?.newCategory?.name });
+      await data();
+      setCategoryName({ name: "" });
+      setIsCategory(false);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Category Added Successfully",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+  };
+
+  const checkInput = () => {
+    if (Object.values(formData).some((value) => value === "")) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const response = await addBook(formData);
-      if (response.status === 200) {
+      if (response.status === 204) {
         setFormData({
           title: "",
           content: "",
@@ -75,20 +130,31 @@ const AddBook = () => {
         setAuthorName({
           name: "",
         });
-
-        event.target.cateId = "";
-        event.target.authrId = "";
       }
 
-      //Toaster Message
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Book Added Successfully",
+        showConfirmButton: false,
+        timer: 1000,
+      });
     } catch (error) {
-      //Toaster Message
+      console.log(error?.response);
+      Swal.fire({
+        title: "You must log in.",
+        text: error?.response?.data?.error,
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
     }
   };
 
-  useEffect(() => {
-    data();
-  }, []);
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -230,7 +296,7 @@ const AddBook = () => {
                 className="form-control"
                 onChange={handleChange}
               >
-                <option name="authrId" value="" defaultValue={""} />
+                <option value="" defaultValue={""} />
                 {authors?.author?.map((author) => (
                   <option key={author.id} value={author.id}>
                     {author.name}
@@ -292,7 +358,7 @@ const AddBook = () => {
               >
                 <option value="" defaultValue={""} />
                 {categories?.category?.map((cate) => (
-                  <option name="cateId" key={cate.id} value={cate.id}>
+                  <option key={cate.id} value={cate.id}>
                     {cate.name}
                   </option>
                 ))}
@@ -345,7 +411,7 @@ const AddBook = () => {
           <button
             type="submit"
             className="btn btn-primary"
-            disabled={isAuthor || isCategory}
+            disabled={isAuthor || isCategory || !button}
             onClick={handleSubmit}
           >
             Add Book
