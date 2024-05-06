@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Books from "../../components/books/books.js";
 import Header from "../../components/header/header.js";
 import { getBooks, swapQuery } from "../../axios/index.js";
-import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [state, setState] = useState({ books: [] });
@@ -33,9 +33,23 @@ const Home = () => {
     try {
       const bookId = { id: id };
       const response = await swapQuery(bookId);
-      toast.success(response?.data?.message);
+      if (response.status === 204) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Swap Request Sent",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.response?.data?.message || "Something went wrong",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -46,7 +60,6 @@ const Home = () => {
   return (
     <div>
       <Header searchTextProp={searchBook} />
-      <Toaster />
       <Books books={filteredBook} swapRequestProps={swapRequest} />
     </div>
   );
