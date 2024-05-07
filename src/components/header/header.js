@@ -44,7 +44,11 @@ const Header = (props) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link active" to={`/`} tabIndex="-1">
+                  <Link
+                    className="nav-link active"
+                    to={`/profile`}
+                    tabIndex="-1"
+                  >
                     Profile
                   </Link>
                 </li>
