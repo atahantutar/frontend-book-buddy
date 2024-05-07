@@ -42,7 +42,7 @@ const Books = (props, swapRequestProps) => {
                   <strong>User:</strong> {book.user.name}
                 </p>
                 <div className="d-flex justify-content-start  align-items-center">
-                  {userData.name ? (
+                  {userData.name && userData.id !== book.user.id ? (
                     <button
                       type="button"
                       className="btn btn-md btn-outline-success mx-2"
