@@ -6,6 +6,7 @@ import Register from "./pages/auth/register";
 import AuthProvider from "./context/authContext";
 import AddBookPage from "./pages/books/addBook";
 import AuthRouter from "./components/Router/authRouter";
+import ProfilePage from "./pages/profile/profilpage";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route
             path="/addBook"
             element={
