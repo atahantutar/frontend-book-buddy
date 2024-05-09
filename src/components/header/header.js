@@ -30,7 +30,6 @@ const Header = (props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarScroll">
-          <li className="text-white">{userData.name}</li>
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             {userData.name ? (
               <>
