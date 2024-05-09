@@ -47,3 +47,7 @@ export const addCategory = async (FormData) => {
 export const swapQuery = async (FormData) => {
   return await HTTP.post("/swap", FormData, headers);
 };
+
+export const getUserBook = async (FormData) => {
+  return await HTTP.post(`/user/Books`, FormData, headers);
+};
