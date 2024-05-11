@@ -31,8 +31,7 @@ const Home = () => {
 
   const swapRequest = async (id) => {
     try {
-      const bookId = { id: id };
-      const response = await swapQuery(bookId);
+      const response = await swapQuery(id);
       if (response.status === 204) {
         Swal.fire({
           position: "top-end",
@@ -48,7 +47,7 @@ const Home = () => {
         icon: "error",
         title: error.response?.data?.message || "Something went wrong",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 5000,
       });
     }
   };
