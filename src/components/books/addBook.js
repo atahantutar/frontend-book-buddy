@@ -140,7 +140,6 @@ const AddBook = () => {
         timer: 1000,
       });
     } catch (error) {
-      console.log(error?.response);
       Swal.fire({
         title: "You must log in.",
         text: error?.response?.data?.error,
