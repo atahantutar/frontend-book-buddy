@@ -24,7 +24,12 @@ export const userInfo = async (id) => {
 };
 
 export const addBook = async (FormData) => {
-  return await HTTP.post("/addbook", FormData);
+  return await HTTP.post("/addbook", FormData, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies.get("AccessToken")}`,
+    },
+  });
 };
 export const getBooks = async () => {
   return await HTTP.get("/getbooks");
