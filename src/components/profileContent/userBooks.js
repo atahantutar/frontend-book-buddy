@@ -107,34 +107,35 @@ const UserBooks = () => {
                     value={book.pages}
                   ></input>
                 </div>
-                <div className="col-3">
-                  <select className="form-control">
-                    <option value={1}>
-                      {book.status === 1 ? "Available" : null}
-                    </option>
-                    <option value={2}>
-                      {book.status === 2 ? "Not Available" : null}
-                    </option>
-                  </select>
+                <div className="col-4">
+                  <h2>
+                    {book.status === 2 ? (
+                      <span className="badge bg-secondary">Swapped</span>
+                    ) : (
+                      <span className="badge bg-success">Open to swap</span>
+                    )}
+                  </h2>
                 </div>
               </div>
               <div className="row m-3">
                 <div className="col-4">
-                  <input
+                  <button
                     type="button"
                     className="form-control btn btn-primary"
-                    value="Edit"
-                  ></input>
+                  >
+                    Edit
+                  </button>
                 </div>
                 <div className="col-4">
-                  <input
+                  <button
                     type="button"
                     className="form-control btn btn-danger"
-                    value="Delete"
                     onClick={() => {
                       delBook(book.id, Swal.fire("Deleted", "", "success"));
                     }}
-                  ></input>
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>

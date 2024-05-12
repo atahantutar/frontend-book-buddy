@@ -1,14 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { userSwapRequests, swapResponse } from "../../axios";
+import Swal from "sweetalert2";
 
 const BookSwaps = () => {
   const [books, setBooks] = useState({ books: [] });
 
   const swapReturnResponse = async (bookId, statusId) => {
-    const response = await swapResponse(bookId, statusId);
-    if (response.status === 204) {
-      data();
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: statusId === 2 ? "Approve" : "Reject",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await swapResponse(bookId, statusId);
+        if (response.status === 204) {
+          data();
+          Swal.fire({
+            title: statusId === 2 ? "Approved!" : "Rejected!",
+            text:
+              statusId === 2
+                ? "Your request has been approved."
+                : "Your request has been rejected.",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
   const data = async () => {
     const response = await userSwapRequests();
@@ -64,14 +85,15 @@ const BookSwaps = () => {
               </div>
               <div className="row m-3">
                 <div className="col-11">
-                  <p className="card-text">
-                    <strong>Request Status : </strong>
-                    {book.status === 1
-                      ? "Waiting"
-                      : book.status === 2
-                      ? "Approved"
-                      : "Rejected"}
-                  </p>
+                  <h2>
+                    {book.status === 2 ? (
+                      <span className="badge bg-success">Approved</span>
+                    ) : book.status === 3 ? (
+                      <span className="badge bg-danger">Rejected</span>
+                    ) : (
+                      <span className="badge bg-warning">Waiting</span>
+                    )}
+                  </h2>
                 </div>
               </div>
               <div className="row m-3">
@@ -88,10 +110,10 @@ const BookSwaps = () => {
                   <button
                     type="button"
                     className="form-control btn btn-success"
-                    value="Approve"
                     onClick={() => {
                       swapReturnResponse(book.id, 2);
                     }}
+                    disabled={book.status === 2}
                   >
                     Approve
                   </button>
@@ -100,10 +122,10 @@ const BookSwaps = () => {
                   <button
                     type="button"
                     className="form-control btn btn-danger"
-                    value="Reject"
                     onClick={() => {
                       swapReturnResponse(book.id, 3);
                     }}
+                    disabled={book.status === 3}
                   >
                     Reject
                   </button>

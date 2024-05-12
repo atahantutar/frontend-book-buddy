@@ -82,14 +82,15 @@ const BookRequests = () => {
               </div>
               <div className="row m-3">
                 <div className="col-4">
-                  <p className="card-text">
-                    <strong>Status: </strong>
-                    {book.status === 1
-                      ? "Waiting"
-                      : book.status === 2
-                      ? "Approved"
-                      : "Rejected"}
-                  </p>
+                  <h2>
+                    {book.status === 2 ? (
+                      <span className="badge bg-success">Approved</span>
+                    ) : book.status === 3 ? (
+                      <span className="badge bg-danger">Rejected</span>
+                    ) : (
+                      <span className="badge bg-warning">Waiting</span>
+                    )}
+                  </h2>
                 </div>
               </div>
               <div className="row m-3">
@@ -106,14 +107,16 @@ const BookRequests = () => {
 
               <div className="row m-3">
                 <div className="col-4">
-                  <input
+                  <button
                     type="button"
                     className="form-control btn btn-danger"
-                    value="Reject"
                     onClick={() => {
                       rejectSwapRequest(book.id);
                     }}
-                  ></input>
+                    disabled={book.status === 2}
+                  >
+                    Reject
+                  </button>
                 </div>
               </div>
             </div>
