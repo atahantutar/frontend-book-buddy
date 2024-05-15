@@ -5,24 +5,23 @@ const Profile = () => {
   const { userData } = useAuth();
 
   return (
-    <div>
-      <h1>Profile</h1>
-      <p>Profile content goes here</p>
-      {userData && (
-        <div>
-          <h3>User Details</h3>
-          <p>
-            <strong>Name: </strong> {userData.name}
-          </p>
-          <p>
-            <strong>E-mail: </strong> {userData.email}
-          </p>
-          <p>
-            <strong>Address: </strong>
-            {userData.address}
-          </p>
-        </div>
-      )}
+    <div className="card ms-5 mt-3">
+      <div className="card-header">Profile</div>
+      <div className="card-body">
+        <h5 className="card-title">
+          <strong>Username: </strong>
+          {userData?.name}
+        </h5>
+        <p className="card-text">
+          <strong>E-mail: </strong>
+          {userData?.email}
+        </p>
+        <p className="card-text">
+          <strong>Address: </strong>
+          {userData?.address}
+        </p>
+        <button className="btn btn-primary">Edit</button>
+      </div>
     </div>
   );
 };

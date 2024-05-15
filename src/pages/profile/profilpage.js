@@ -7,7 +7,7 @@ const ProfilePage = () => {
   return (
     <>
       <Header />
-      <div className="row">
+      <div className="row container">
         <Sidebar />
         <Content />
       </div>

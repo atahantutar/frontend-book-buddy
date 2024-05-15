@@ -42,10 +42,17 @@ const UserBooks = () => {
   }, []);
 
   return (
-    <div className="m-3">
+    <>
+      <div className="m-3">
+        <div className="row m-3">
+          <div className="col-12">
+            <h3>My Books</h3>
+          </div>
+        </div>
+      </div>
       {books?.books?.map((book) => (
-        <div key={book.id} className="card mb-3 ">
-          <div className="card-body row ">
+        <div key={book.id} className="card ms-5 mt-3">
+          <div className="card-body row">
             <div className="col-3">
               <img
                 style={{
@@ -57,68 +64,49 @@ const UserBooks = () => {
                 className="img-fluid"
               />
             </div>
-            <div className="col-8 mt-3 ">
-              <div className="row m-3">
-                <div className="col-4">
+            <div className="col-7">
+              <div className="row mb-3 mt-3">
+                <div className="col-6">
                   <h5 className="card-title">{book.title}</h5>
                 </div>
-                <div className="col-2">
+                <div className="col-6">
                   <p className="card-text">{book.author.name}</p>
                 </div>
               </div>
-              <div className="row m-3">
-                <div className="col-11">
+              <div className="row mb-3 mt-3">
+                <div className="col-12">
                   <p className="card-text">{book.content}</p>
                 </div>
               </div>
-              <div className="row m-3">
-                <div className="col-4 ">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={book.publisher}
-                  ></input>
-                </div>
-                <div className="col-3 ">
-                  <input
-                    type="date"
-                    className="form-control"
-                    value={book.published}
-                  ></input>
-                </div>
-                <div className="col-2">
+              <div className="row mb-3 mt-3">
+                <div className="col-5">
                   <p className="card-text">
+                    <strong>Publisher: </strong>
+                    {book.publisher}
+                  </p>
+                </div>
+                <div className="col-6">
+                  <p className="card-text">
+                    <strong>Book Published: </strong>
                     {new Date(book.published).toLocaleDateString()}
                   </p>
                 </div>
               </div>
-              <div className="row m-3">
-                <div className="col-4">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={book.category.name}
-                  ></input>
+              <div className="row mb-3 mt-3">
+                <div className="col-5">
+                  <p className="card-text">
+                    <strong>Category: </strong>
+                    {book.category.name}
+                  </p>
                 </div>
-                <div className="col-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={book.pages}
-                  ></input>
-                </div>
-                <div className="col-4">
-                  <h2>
-                    {book.status === 2 ? (
-                      <span className="badge bg-secondary">Swapped</span>
-                    ) : (
-                      <span className="badge bg-success">Open to swap</span>
-                    )}
-                  </h2>
+                <div className="col-5">
+                  <p className="card-text">
+                    <strong>Pages: </strong> {book.pages}
+                  </p>
                 </div>
               </div>
-              <div className="row m-3">
-                <div className="col-4">
+              <div className="row mb-3 mt-3">
+                <div className="col-5">
                   <button
                     type="button"
                     className="form-control btn btn-primary"
@@ -126,7 +114,7 @@ const UserBooks = () => {
                     Edit
                   </button>
                 </div>
-                <div className="col-4">
+                <div className="col-5">
                   <button
                     type="button"
                     className="form-control btn btn-danger"
@@ -137,12 +125,21 @@ const UserBooks = () => {
                     Delete
                   </button>
                 </div>
+                <div className="col-2">
+                  <h3>
+                    {book.status === 2 ? (
+                      <span className="badge bg-secondary">Swapped</span>
+                    ) : (
+                      <span className="badge bg-success">Open to swap</span>
+                    )}
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

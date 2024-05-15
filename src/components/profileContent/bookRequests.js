@@ -41,14 +41,16 @@ const BookRequests = () => {
   }, []);
 
   return (
-    <div className="m-3">
-      <div className="row m-3">
-        <div className="col-12">
-          <h3>Requests From Me</h3>
+    <>
+      <div className="m-3">
+        <div className="row m-3">
+          <div className="col-12">
+            <h3>My Request</h3>
+          </div>
         </div>
       </div>
       {books?.books?.map((book) => (
-        <div key={book.id} className="card mb-3 ">
+        <div key={book.id} className="card ms-5 mt-3 ">
           <div className="card-body row ">
             <div className="col-3">
               <img
@@ -61,28 +63,32 @@ const BookRequests = () => {
                 className="img-fluid"
               />
             </div>
-            <div className="col-8 mt-3 ">
-              <div className="row m-3">
-                <div className="col-4">
+            <div className="col-7 mb-3 mt-3 ">
+              <div className="row mb-3 mt-3">
+                <div className="col-12">
                   <h5 className="card-title">{book.book.title}</h5>
                 </div>
               </div>
-              <div className="row m-3">
+              <div className="row mb-3 mt-3">
                 <div className="col-12">
                   <p className="card-text">{book.book.content}</p>
                 </div>
               </div>
-              <div className="row m-3">
+              <div className="row mb-3 mt-3">
                 <div className="col-4">
                   <p className="card-text">
                     <strong>Acceptor User: </strong>
                     {book.book.user.name}
                   </p>
                 </div>
-              </div>
-              <div className="row m-3">
-                <div className="col-4">
-                  <h2>
+                <div className="col-5">
+                  <p type="text" className="card-text">
+                    <strong> Request Date: </strong>
+                    {new Date(book.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+                <div className="col-2">
+                  <h3>
                     {book.status === 2 ? (
                       <span className="badge bg-success">Approved</span>
                     ) : book.status === 3 ? (
@@ -90,22 +96,10 @@ const BookRequests = () => {
                     ) : (
                       <span className="badge bg-warning">Waiting</span>
                     )}
-                  </h2>
+                  </h3>
                 </div>
               </div>
-              <div className="row m-3">
-                <div className="col-11"></div>
-              </div>
-              <div className="row m-3">
-                <div className="col-4 ">
-                  <p type="text" className="card-text">
-                    <strong> Request Date: </strong>
-                    {new Date(book.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-
-              <div className="row m-3">
+              <div className="row mb-3 mt-3">
                 <div className="col-4">
                   <button
                     type="button"
@@ -123,7 +117,7 @@ const BookRequests = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
