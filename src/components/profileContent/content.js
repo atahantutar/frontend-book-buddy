@@ -10,7 +10,7 @@ const Content = () => {
   const { stateContent } = useContent();
 
   return (
-    <div className="col-9">
+    <div className="col-10 ms-0">
       {stateContent.stateContent === "profile" && <Profile />}
       {stateContent.stateContent === "books" && <Books />}
       {stateContent.stateContent === "requests" && <Requests />}
