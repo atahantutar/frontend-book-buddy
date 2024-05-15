@@ -47,11 +47,11 @@ const BookSwaps = () => {
     <div className="m-3">
       <div className="row m-3">
         <div className="col-12">
-          <h3>My Request</h3>
+          <h3>Requests</h3>
         </div>
       </div>
       {books.books.map((book) => (
-        <div key={book.id} className="card mb-3 ">
+        <div key={book.id} className="card ms-5 mt-3">
           <div className="card-body row ">
             <div className="col-3">
               <img
@@ -64,49 +64,33 @@ const BookSwaps = () => {
                 className="img-fluid"
               />
             </div>
-            <div className="col-8 mt-3 ">
-              <div className="row m-3">
-                <div className="col-4">
+            <div className="col-7 mb-3 mt-3 ">
+              <div className="row mb-3 mt-3">
+                <div className="col-12">
                   <h5 className="card-title">{book.book.title}</h5>
                 </div>
               </div>
-              <div className="row m-3">
+              <div className="row mb-3 mt-3">
                 <div className="col-12">
                   <p className="card-text">{book.book.content}</p>
                 </div>
               </div>
-              <div className="row m-3">
-                <div className="col-4">
+              <div className="row mb-3 mt-3">
+                <div className="col-5">
                   <p className="card-text">
                     <strong>Request User : </strong>
                     {book.user.name}
                   </p>
                 </div>
-              </div>
-              <div className="row m-3">
-                <div className="col-11">
-                  <h2>
-                    {book.status === 2 ? (
-                      <span className="badge bg-success">Approved</span>
-                    ) : book.status === 3 ? (
-                      <span className="badge bg-danger">Rejected</span>
-                    ) : (
-                      <span className="badge bg-warning">Waiting</span>
-                    )}
-                  </h2>
-                </div>
-              </div>
-              <div className="row m-3">
-                <div className="col-4 ">
+                <div className="col-5">
                   <p type="text" className="card-text">
                     <strong> Request Date : </strong>
                     {new Date(book.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
-
-              <div className="row m-3">
-                <div className="col-4">
+              <div className="row mb-3 mt-3">
+                <div className="col-5">
                   <button
                     type="button"
                     className="form-control btn btn-success"
@@ -118,7 +102,7 @@ const BookSwaps = () => {
                     Approve
                   </button>
                 </div>
-                <div className="col-4">
+                <div className="col-5">
                   <button
                     type="button"
                     className="form-control btn btn-danger"
@@ -129,6 +113,17 @@ const BookSwaps = () => {
                   >
                     Reject
                   </button>
+                </div>
+                <div className="col-2">
+                  <h3>
+                    {book.status === 2 ? (
+                      <span className="badge bg-success">Approved</span>
+                    ) : book.status === 3 ? (
+                      <span className="badge bg-danger">Rejected</span>
+                    ) : (
+                      <span className="badge bg-warning">Waiting</span>
+                    )}
+                  </h3>
                 </div>
               </div>
             </div>
