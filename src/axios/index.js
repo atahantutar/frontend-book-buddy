@@ -145,3 +145,16 @@ export const swapResponse = async (Params, Status) => {
     }
   );
 };
+
+export const setStateBook = async (Params, Status) => {
+  return await HTTP.post(
+    `/books/${Params.id}`,
+    { status: Status },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies.get("AccessToken")}`,
+      },
+    }
+  );
+};
