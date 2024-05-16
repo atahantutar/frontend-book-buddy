@@ -26,7 +26,6 @@ const RegisterForm = () => {
     try {
       const response = await Register(formData);
       Swal.fire({
-        position: "top-end",
         icon: "success",
         title: response?.data?.message,
         showConfirmButton: false,
