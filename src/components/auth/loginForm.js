@@ -29,7 +29,6 @@ const LoginForm = () => {
       const response = await Login(formData);
       cookies.set("AccessToken", response?.data?.token);
       Swal.fire({
-        position: "top-end",
         icon: "success",
         title: "Login Successful",
         showConfirmButton: false,
