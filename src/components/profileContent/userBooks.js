@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUserBook, deleteBook } from "../../axios";
+import { getUserBook, deleteBook, setStateBook } from "../../axios";
 import Swal from "sweetalert2";
 
 const UserBooks = () => {
@@ -34,6 +34,44 @@ const UserBooks = () => {
           icon: "success",
         });
       }
+    });
+  };
+  const editBook = async (id, status) => {
+    await Swal.fire({
+      title: "Select field validation",
+      input: "select",
+      inputOptions: {
+        1: "Open to swap",
+        2: "Close to swap",
+      },
+      inputPlaceholder: "Select a Status",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return new Promise(async (resolve) => {
+          if (value !== "") {
+            if (parseInt(value) === 1) {
+              if (status === 2) {
+                await setStateBook({ id: id }, { status: value });
+                await data();
+                resolve();
+              } else {
+                resolve("You need to select a status");
+              }
+            }
+            if (parseInt(value) === 2) {
+              if (status === 1) {
+                await setStateBook({ id: id }, { status: value });
+                await data();
+                resolve();
+              } else {
+                resolve("You need to select a status");
+              }
+            }
+          } else {
+            resolve("You need to select a status");
+          }
+        });
+      },
     });
   };
 
@@ -110,6 +148,9 @@ const UserBooks = () => {
                   <button
                     type="button"
                     className="form-control btn btn-primary"
+                    onClick={() => {
+                      editBook(book.id, book.status);
+                    }}
                   >
                     Edit
                   </button>
@@ -119,7 +160,7 @@ const UserBooks = () => {
                     type="button"
                     className="form-control btn btn-danger"
                     onClick={() => {
-                      delBook(book.id, Swal.fire("Deleted", "", "success"));
+                      delBook(book.id);
                     }}
                   >
                     Delete
