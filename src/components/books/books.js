@@ -1,12 +1,67 @@
-import React from "react";
-import { useAuth } from "../../context/authContext";
+import React, { useEffect } from "react";
 
-const Books = (props, swapRequestProps) => {
+import { useAuth } from "../../context/authContext";
+import { useBooks } from "../../context/booksContext";
+import { useSearchText } from "../../context/searchTextContext";
+
+import { swapQuery, getBooks } from "../../axios/index.js";
+
+import Swal from "sweetalert2";
+
+const Books = () => {
   const { userData } = useAuth();
+  const { books, setBooks } = useBooks();
+  const { searchText } = useSearchText();
+
+  const data = async () => {
+    const response = await getBooks();
+    const data = response.data.Books;
+    setBooks({
+      books: data,
+    });
+  };
+
+  let filteredBook = books.books
+    .filter((book) => {
+      return (
+        book.title.toLowerCase().indexOf(searchText?.text?.toLowerCase()) !== -1
+      );
+    })
+    .sort((a, b) => {
+      return a.id - b.id;
+    });
+
+  const swapRequest = async (id) => {
+    try {
+      const response = await swapQuery(id);
+      if (response.status === 204) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Swap Request Sent",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.response?.data?.message || "Something went wrong",
+        showConfirmButton: false,
+        timer: 5000,
+      });
+    }
+  };
+
+  useEffect(() => {
+    data();
+  });
+
   return (
     <div className="container my-4 ">
       <div className="row">
-        {props.books.map((book, i) =>
+        {filteredBook.map((book, i) =>
           book.user.id !== userData.id ? (
             <div className="col-lg-4 p-4 " key={i}>
               <div className="card mb-4 shadow-sm h-100">
@@ -49,7 +104,7 @@ const Books = (props, swapRequestProps) => {
                       <button
                         type="button"
                         className="btn btn-md btn-outline-success mx-2"
-                        onClick={() => props.swapRequestProps(book.id)}
+                        onClick={() => swapRequest(book.id)}
                       >
                         Swap
                       </button>
