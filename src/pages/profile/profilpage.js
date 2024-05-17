@@ -1,6 +1,9 @@
 import React from "react";
+
 import Sidebar from "../../components/sideBar/sidebar";
+
 import Header from "../../components/header/header";
+
 import Content from "../../components/profileContent/content";
 
 const ProfilePage = () => {

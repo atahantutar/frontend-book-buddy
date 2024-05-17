@@ -1,5 +1,7 @@
 import React from "react";
-import RegisterForm from "../../components/auth/registerForm";
+
+import RegisterForm from "../../components/loginRegister/registerForm";
+
 import Header from "../../components/header/header";
 
 const Register = () => {
