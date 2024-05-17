@@ -1,15 +1,25 @@
 import React from "react";
+
+import { useAuth } from "../../context/authContext";
+import { useSearchText } from "../../context/searchTextContext";
+
 import { Link } from "react-router-dom";
 import { PiLineVerticalLight } from "react-icons/pi";
-import { useAuth } from "../../context/authContext";
+
 import Cookies from "universal-cookie";
 
-const Header = (props) => {
+const Header = () => {
   const { userData, setUserData } = useAuth();
+  const { setSearchText } = useSearchText();
+
   const cookies = new Cookies();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+  };
+
+  const searchBook = (event) => {
+    setSearchText({ text: event.target.value });
   };
 
   return (
@@ -95,7 +105,7 @@ const Header = (props) => {
               type="search"
               placeholder="Search"
               aria-label="Search"
-              onChange={props.searchTextProp}
+              onChange={searchBook}
             ></input>
           </form>
         </div>
