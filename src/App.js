@@ -8,8 +8,8 @@ import SearchTextProvider from "./context/searchTextContext";
 import BooksProvider from "./context/booksContext";
 
 import Home from "./pages/mainpage/MainPage";
-import Login from "./pages/auth/login";
-import Register from "./pages/auth/register";
+import Login from "./pages/loginRegister/login";
+import Register from "./pages/loginRegister/register";
 import AddBookPage from "./pages/books/addBook";
 import ProfilePage from "./pages/profile/profilpage";
 
